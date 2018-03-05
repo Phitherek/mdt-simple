@@ -7,7 +7,7 @@ module MDT
       end
 
       def self.subkeys
-        ['env', 'sudo']
+        ['env', 'sudo', 'generic']
       end
 
       def prepend(key, command, options = {})
