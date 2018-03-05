@@ -14,10 +14,10 @@ module MDT
       def fetch(key, options = {})
         case key
         when 'directory'
-          if options[:path]
+          if options['path']
             begin
-              puts "Fetching project data from directory: #{options[:path]}"
-              FileUtils.cp_r(options[:path], '.')
+              puts "Fetching project data from directory: #{options['path']}"
+              FileUtils.cp_r(options['path'], '.')
               0
             rescue
               1

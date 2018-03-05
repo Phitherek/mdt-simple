@@ -13,16 +13,16 @@ module MDT
       def prepend(key, command, options = {})
         case key
         when 'env'
-          if options[:name] && options[:value]
-            "#{options[:name]}=#{options[:value]} #{command}"
+          if options['name'] && options['value']
+            "#{options['name']}=#{options['value']} #{command}"
           else
             command
           end
         when 'sudo'
-          "sudo #{options[:args]} #{command}"
+          "sudo #{options['args']} #{command}"
         when 'generic'
-          if options[:modifier_str]
-            "#{options[:modifier_str]} #{command}"
+          if options['modifier_str']
+            "#{options['modifier_str']} #{command}"
           else
             command
           end

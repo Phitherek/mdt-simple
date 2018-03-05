@@ -14,10 +14,10 @@ module MDT
       def mkdir(key, options = {})
         case key
         when 'directory'
-          if options[:path]
+          if options['path']
             begin
-              puts "Creating directory: #{options[:path]}"
-              FileUtils.mkdir_p(options[:path])
+              puts "Creating directory: #{options['path']}"
+              FileUtils.mkdir_p(options['path'])
               0
             rescue
               1
@@ -31,10 +31,10 @@ module MDT
       def cd(key, options = {})
         case key
         when 'directory'
-          if options[:path]
+          if options['path']
             begin
-              puts "Changing working directory to: #{options[:path]}"
-              FileUtils.cd(options[:path])
+              puts "Changing working directory to: #{options['path']}"
+              FileUtils.cd(options['path'])
               0
             rescue
               1
