@@ -17,7 +17,7 @@ module MDT
           if options['path']
             begin
               puts "Fetching project data from directory: #{options['path']}"
-              FileUtils.cp_r(options['path'], '.')
+              FileUtils.cp_r(Dir[options['path'] + '/*'], Dir['.'].first)
               0
             rescue
               1
