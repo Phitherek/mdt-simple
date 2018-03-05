@@ -16,7 +16,7 @@ module MDT
         when 'shell'
           if options['command']
             options['shell'] ||= '/bin/bash'
-            cmd = MDT::Helpers::Command::ApplyCommandModifiers(options['command'], modifiers)
+            cmd = MDT::Helpers::Command.apply_command_modifiers(options['command'], modifiers)
             puts "Running shell command: #{options['shell']} #{options['args']} -c \"#{cmd}\""
             `#{options['shell']} #{options['args']} -c "#{cmd}"`
             $?.exitstatus
@@ -25,7 +25,7 @@ module MDT
           end
         when 'system'
           if options['command_string']
-            cmd = MDT::Helpers::Command::ApplyCommandModifiers(options['command_string'], modifiers)
+            cmd = MDT::Helpers::Command.apply_command_modifiers(options['command_string'], modifiers)
             puts "Running command: #{cmd}"
             `#{cmd}`
           else
