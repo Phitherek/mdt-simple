@@ -2,16 +2,33 @@ require 'mdt-core'
 require 'fileutils'
 require 'open3'
 module MDT
+  # A module containing all commands
   module Commands
+    # A class that implements simple commands
     class Simple < MDT::Commands::Base
+      # A method that defines a key for commands class.
+      # Returns:
+      # * "simple"
       def self.key
         'simple'
       end
 
+      # A method that defines keys for available commands.
+      # Returns:
+      # * +["shell", "system", "mkdir", "cd", "cp", "mv", "rm", "ln", "chmod", "chown", "touch"]+
       def self.subkeys
         ['shell', 'system', 'mkdir', 'cd', 'cp', 'mv', 'rm', 'ln', 'chmod', 'chown', 'touch']
       end
 
+      # A method that defines how to execute a command and how to apply command modifiers.
+      # Arguments:
+      # * +key+ - a key identifier of a particular command
+      # * +modifiers+ - an array of command modifier configurations - each configuration is a Hash that includes modifier type and modifier options
+      # * +options+ - options for command as a Hash
+      # Returns:
+      # * Exit code of command +key+
+      # More information:
+      # * See README.md for detailed description of commands
       def execute(key, modifiers = [], options = {})
         case key
         when 'shell'
