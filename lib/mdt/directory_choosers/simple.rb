@@ -33,7 +33,7 @@ module MDT
           if options['path']
             begin
               puts "Creating directory: #{options['path']}"
-              FileUtils.mkdir_p(Dir[options['path']].first)
+              FileUtils.mkdir_p(options['path'])
               0
             rescue
               1
