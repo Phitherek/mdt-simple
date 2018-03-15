@@ -3,7 +3,7 @@ require_relative './lib/mdt/version'
 Gem::Specification.new do |s|
   s.name = 'mdt-simple'
   s.version = MDT::Simple::VERSION
-  s.date = '2018-03-02'
+  s.date = '2018-03-15'
   s.summary = 'MDT Simple module'
   s.description = 'A module with simple implementations for MDT'
   s.authors = ['Phitherek_']

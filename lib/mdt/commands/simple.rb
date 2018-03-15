@@ -1,6 +1,5 @@
 require 'mdt-core'
 require 'fileutils'
-require 'open3'
 module MDT
   # A module containing all commands
   module Commands
@@ -36,20 +35,8 @@ module MDT
             options['shell'] ||= '/bin/bash'
             cmd = MDT::Helpers::Command.apply_command_modifiers(options['command'], modifiers)
             puts "Running shell command: #{options['shell']} #{options['args']} -c \"#{cmd}\""
-            (cmd_stdout, cmd_stderr, status) = Open3.popen3("#{options['shell']} #{options['args']} -c \"#{cmd}\"") do |stdin, stdout, stderr, wait_thr|
-              exit_status = wait_thr.value
-              cmd_stdout = stdout.read
-              cmd_stderr = stderr.read
-              [cmd_stdout, cmd_stderr, exit_status]
-            end
-            puts
-            puts 'STDOUT:'
-            puts cmd_stdout
-            puts
-            puts 'STDERR:'
-            puts cmd_stderr
-            puts
-            status.exitstatus
+            system("#{options['shell']} #{options['args']} -c \"#{cmd}\"")
+            $?.exitstatus
           else
             1
           end
@@ -57,20 +44,8 @@ module MDT
           if options['command_string']
             cmd = MDT::Helpers::Command.apply_command_modifiers(options['command_string'], modifiers)
             puts "Running command: #{cmd}"
-            (cmd_stdout, cmd_stderr, status) = Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
-              exit_status = wait_thr.value
-              cmd_stdout = stdout.read
-              cmd_stderr = stderr.read
-              [cmd_stdout, cmd_stderr, exit_status]
-            end
-            puts
-            puts 'STDOUT:'
-            puts cmd_stdout
-            puts
-            puts 'STDERR:'
-            puts cmd_stderr
-            puts
-            status.exitstatus
+            system(cmd)
+            $?.exitstatus
           else
             1
           end
