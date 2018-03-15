@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mdt-simple (0.0.1)
+    mdt-simple (0.0.2)
       mdt-core (~> 0.0)
 
 GEM

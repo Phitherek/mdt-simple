@@ -54,10 +54,10 @@ module MDT
             begin
               if options['parents']
                 puts "Creating directory with parents: #{options['path']}"
-                FileUtils.mkdir_p(Dir[options['path']].first)
+                FileUtils.mkdir_p(options['path'])
               else
                 puts "Creating directory: #{options['path']}"
-                FileUtils.mkdir(Dir[options['path']].first)
+                FileUtils.mkdir(options['path'])
               end
               0
             rescue
@@ -134,16 +134,16 @@ module MDT
             begin
              if options['symbolic'] && options['force']
                puts "Creating a symbolic link with force to: #{options['destination_path']} named: #{options['link_name']}"
-               FileUtils.ln_sf(Dir[options['destination_path']].first, Dir[options['link_name']].first)
+               FileUtils.ln_sf(Dir[options['destination_path']], Dir[options['link_name']].first)
              elsif options['symbolic']
                puts "Creating a symbolic link to: #{options['destination_path']} named: #{options['link_name']}"
-               FileUtils.ln_s(Dir[options['destination_path']].first, Dir[options['link_name']].first)
+               FileUtils.ln_s(Dir[options['destination_path']], Dir[options['link_name']].first)
              elsif options['force']
                puts "Creating a link with force to: #{options['destination_path']} named: #{options['link_name']}"
-               FileUtils.ln_f(Dir[options['destination_path']].first, Dir[options['link_name']].first)
+               FileUtils.ln_f(Dir[options['destination_path']], Dir[options['link_name']].first)
              else
                puts "Creating a link to: #{options['destination_path']} named: #{options['link_name']}"
-               FileUtils.ln(Dir[options['destination_path']].first, Dir[options['link_name']].first)
+               FileUtils.ln(Dir[options['destination_path']], Dir[options['link_name']].first)
              end
               0
             rescue
